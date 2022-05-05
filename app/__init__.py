@@ -1,5 +1,8 @@
 from flask import Flask
 
+#import routes
+from app.routes import home, dashboard
+
 # when flask runs the app package it will call a create_app() function
 
 
@@ -15,9 +18,13 @@ def create_app(test_config=None):
     )
 
     # set up route
-    @app.route('/')
+    @app.route('/hello')
     # creates inner function that returns a string
     def hello():
         return 'hello world'
+
+    # register routes
+    app.register_blueprint(home)
+    app.register_blueprint(dashboard)
 
     return app
